@@ -50,20 +50,7 @@ class ViewController: UIViewController {
               displayImageNo = 0
               displayImage()
           }
-          
-          self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
-          
-          
-          func updateTimer(_ timer: Timer) {
-              if displayImageNo < imageNameArray.count - 1 {
-                  displayImageNo += 1
-                  displayImage()
-              } else {
-                  displayImageNo = 0
-                  displayImage()
-              }
-          }
-      }
+    }
       
     @IBAction func switchButtonTap(_ sender: Any) {
            if self.timer == nil {
@@ -105,18 +92,29 @@ class ViewController: UIViewController {
     
     
     @IBAction func backButtonTap(_ sender: Any) {
-        if displayImageNo < imageNameArray.count - 1 {
-            displayImageNo += 1
+       if displayImageNo  >= 1 && displayImageNo  <= imageNameArray.count - 1  {
+            displayImageNo -= 1
             displayImage()
-        } else {
-            displayImageNo = 0
+       } else {
+            displayImageNo = imageNameArray.count - 1
             displayImage()
-        }
+              }
         
     }
 
     
     @IBAction func onTapAction(_ sender: Any) {
+        
+        if self.timer != nil {
+                 print("タイマー停止")
+                 
+                 backButton.isEnabled = true
+                 nextButton.isEnabled = true
+                 timer.invalidate()
+            self.timer = nil
+            
+        }
+        
           self.performSegue(withIdentifier: "toZoomIn", sender: nil)
     }
     
