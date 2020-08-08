@@ -113,6 +113,9 @@ class ViewController: UIViewController {
                  timer.invalidate()
             self.timer = nil
             
+            switchButton.setTitle("再生", for: .normal)
+            
+            
         }
         
           self.performSegue(withIdentifier: "toZoomIn", sender: nil)
